@@ -5,24 +5,19 @@ export default function Citations(props){
     const citedPapers = [];
 
     const findCitations = () => {
-        citations.forEach(citation => {
-            for (let i = 0; i < papers.length; i++){
-                if (title === papers[i].title){
-                    continue;
-                }else {
-                    if (citation.title === papers[i].title){
-                        citedPapers.push(papers[i].title);
-                    }
-                }
-                
-            }   
+        const citationNames = citations.map(citation => citation.title);
+
+        papers.forEach(paper => {
+           if (citationNames.includes(paper.title)){
+               citedPapers.push(paper)
+           }
         });
         return citedPapers;
     }
 
     return (
         <div>
-             <h4>{title}</h4>
+             <h4>Cited Papers</h4>
             <ul>
                 { 
                     findCitations()
