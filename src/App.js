@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+
+import PaperIdInputForm from './components/PaperIdInputForm';
+import CrossLinkList from './components/CrossLinkList';
 
 // Paper IDs
 // arXiv:1802.05983
@@ -13,11 +16,38 @@ import axios from 'axios';
 
 // To receive extracted references even if Semantic Scholar doesn't have the paper
 // Add the query ?include_unknown_references=true
+const sampleId = 'arXiv:1802.05983';
 
 function App() {
+  const [id, setId] = useState('');
+  const [papers, setPapers] = useState([]);
+  
+  const handleChangeId = (newId) => {
+    setId(newId);
+  };
+
+  const updateData = function(searchResult){
+    console.log(searchResult);
+    setPapers([...papers, searchResult]);
+  };
+  
+  useEffect(()=>{
+    if (!id){
+      return;
+    }
+    axios.get(`https://api.semanticscholar.org/v1/paper/${id}`)
+    .then(response => {
+      return response.data;
+    }).then(result => {
+      updateData(result);
+    })
+    .catch(err => console.log(err))
+  }, [id]);
+
   return (
     <div className="App">
-      Research Paper Citation Node Visualization
+      <h1>Research Paper Citation Node Visualization</h1>
+      <PaperIdInputForm handleChangeId={handleChangeId} papers={papers}/>
     </div>
   );
 }

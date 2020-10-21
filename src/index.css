@@ -16,3 +16,9 @@ html {
   font-size: 62.5%;
   box-sizing: border-box;
 }
+
+.App {
+  width: 75%;
+  margin: 0 auto;
+  font-size: 2rem;
+}
