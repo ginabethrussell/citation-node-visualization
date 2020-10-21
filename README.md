@@ -4,7 +4,7 @@
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # API
-- The Semantic Scholar API was used to obtain citations in academic papers, given the academic paper id
+- The [Semantic Scholar API](https://api.semanticscholar.org/) was used to obtain citations in academic papers, given the academic paper id
 
 # Added Dependencies
 - The Axios library was added for http requests.
