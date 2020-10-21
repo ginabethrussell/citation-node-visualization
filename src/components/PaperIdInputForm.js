@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import CrossLinkList from './CrossLinkList';
+import SharedCitationList from './SharedCitationList';
 
 export default function PaperIdInputForm(props){
     const {handleChangeId, papers} = props;
     const [searchId, setSearchId] = useState('');
     const [findCitations, setFindCitations] = useState(false);
+    const [findSharedCitations, setSharedCitations] = useState(false);
 
    
     return(
@@ -32,8 +34,11 @@ export default function PaperIdInputForm(props){
                     {papers.length > 1 &&
                         <button onClick={()=> setFindCitations(true)}>Find Common Citations</button>
                     } 
-        
                     {findCitations && <CrossLinkList papers={papers} />}
+                    {papers.length > 1 &&
+                        <button onClick={()=> setSharedCitations(true)}>Find Shared Citations</button>
+                    } 
+                    {findSharedCitations && <SharedCitationList papers={papers}/>}
                 </div>
 
            
