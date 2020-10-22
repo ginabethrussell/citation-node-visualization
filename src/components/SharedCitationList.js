@@ -1,4 +1,5 @@
 import React from 'react';
+import BasicGraph from './BasicGraph'
 
 export default function SharedCitationList(props) {
     const {papers} = props;
@@ -48,6 +49,7 @@ export default function SharedCitationList(props) {
                     <li key={item.value}>{item.value}</li>
                 ))}
             </ul>
+            <BasicGraph papers={papers}/>
         </div>
     )
 
