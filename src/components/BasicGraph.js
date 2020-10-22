@@ -20,10 +20,10 @@ const BasicGraph = (props) => {
     { id: '3', data: { label: `${papers[2].title}` }, position: { x: 250, y: 200 } },
     { id: '4', data: { label: `${papers[3].title}` }, position: { x: 100, y: 300 } },
     { id: 'e1-2', source: '1', target: '2', animated: true },
-    { id: 'e1-3', source: '1', target: '3', animated: true },
+    { id: 'e3-1', source: '3', target: '1', animated: true },
     { id: 'e3-2', source: '3', target: '2', animated: true },
-    { id: 'e3-4', source: '3', target: '4', animated: true },
     { id: 'e4-1', source: '4', target: '1', animated: true },
+    { id: 'e4-2', source: '4', target: '2', animated: true },
   ];
 
   return (
