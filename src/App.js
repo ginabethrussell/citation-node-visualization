@@ -23,7 +23,9 @@ const sampleId = 'arXiv:1802.05983';
 const useStyles = makeStyles({
   root: {
     fontSize: '62.5%',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
+    width: '75%',
+    margin: '0 auto'
   },
   h1: {
     color: '#4050b5',

@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import CrossLinkList from './CrossLinkList';
 import SharedCitationList from './SharedCitationList';
-import {Button, TextField, Container, Grid} from '@material-ui/core';
+import {Button, TextField, Container, Grid, GridList} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
-import { FullscreenExit } from '@material-ui/icons';
 
 
 const useStyles = makeStyles({
@@ -18,7 +17,7 @@ const useStyles = makeStyles({
     searchTitle: {
         display: 'flex',
         justifyContent:'flex-start',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     img: {
         height: '50px',
@@ -28,9 +27,11 @@ const useStyles = makeStyles({
         fontSize: '1.6rem' 
     },
     div: {
-        width: '50%',
+        width: '100%',
+        maxWidth: '500px',
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'flex-start',
+        marginTop: '20px'
     },
     li: {
         fontSize: '1.6rem',
@@ -48,17 +49,26 @@ export default function PaperIdInputForm(props){
    
     return(
         <div>
-            <div className={classes.searchTitle}>
-                <h3 className={classes.h3}>Enter Paper ID to Search </h3>
+            <Grid 
+            container
+            direction="column"
+            justify="flex-start"
+            alignItems="flex-start">
+                <h3 className={classes.h3}>Enter Paper ID to Search Using</h3>
                 <img className={classes.img}src="https://cdn-images-1.medium.com/max/1200/1*uJJgPvoOHW7BmvcV2m7L6w@2x.png" alt="semantic scholar logo" />
-            </div>
-            <Container >
+            </Grid>
+            <Grid
+            container
+            direction='row'
+            justify='flex-start'
+            alignItems='center' >
                 <div className={classes.div}>
                     <TextField
                         id="outlined-secondary"
                         label="enter a paper id"
                         variant="outlined"
                         color="primary"
+                        fullWidth='true'
                         type="text"
                         placeholder="enter id to search"
                         value={searchId}
@@ -73,7 +83,7 @@ export default function PaperIdInputForm(props){
                         }}
                     >Add</Button>
             </div>
-            </Container>
+            </Grid>
             { papers.length !== 0 &&
         
                 <div>
