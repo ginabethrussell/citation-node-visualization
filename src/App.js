@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import {makeStyles} from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
 import PaperIdInputForm from './components/PaperIdInputForm';
-import CrossLinkList from './components/CrossLinkList';
+
 
 // Paper IDs
 // arXiv:1802.05983
@@ -18,9 +20,21 @@ import CrossLinkList from './components/CrossLinkList';
 // Add the query ?include_unknown_references=true
 const sampleId = 'arXiv:1802.05983';
 
+const useStyles = makeStyles({
+  root: {
+    fontSize: '62.5%',
+    boxSizing: 'border-box'
+  },
+  h1: {
+    color: '#4050b5',
+    fontSize: '2.2rem'
+  }
+})
+
 function App() {
   const [id, setId] = useState('');
   const [papers, setPapers] = useState([]);
+  const classes = useStyles();
   
   const handleChangeId = (newId) => {
     setId(newId);
@@ -45,10 +59,12 @@ function App() {
   }, [id]);
 
   return (
-    <div className="App">
-      <h1>Research Paper Citation Node Visualization</h1>
-      <PaperIdInputForm handleChangeId={handleChangeId} papers={papers}/>
-    </div>
+    <Container maxWidth="lg">
+      <div className={classes.root}>
+        <h1 className={classes.h1}>Research Paper Citation Node Visualization</h1>
+        <PaperIdInputForm handleChangeId={handleChangeId} papers={papers}/>
+      </div>
+    </Container>
   );
 }
 
