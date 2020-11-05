@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import CrossLinkList from './CrossLinkList';
-import SharedCitationList from './SharedCitationList';
 import {Button, TextField, Container, Grid, GridList} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
@@ -42,8 +40,6 @@ const useStyles = makeStyles({
 export default function PaperIdInputForm(props){
     const {handleChangeId, papers} = props;
     const [searchId, setSearchId] = useState('');
-    const [findCitations, setFindCitations] = useState(false);
-    const [findSharedCitations, setSharedCitations] = useState(false);
     const classes = useStyles();
 
    
@@ -55,7 +51,7 @@ export default function PaperIdInputForm(props){
             justify="flex-start"
             alignItems="flex-start">
                 <h3 className={classes.h3}>Enter Paper ID to Search Using</h3>
-                <img className={classes.img}src="https://cdn-images-1.medium.com/max/1200/1*uJJgPvoOHW7BmvcV2m7L6w@2x.png" alt="semantic scholar logo" />
+                <a href='https://api.semanticscholar.org'><img className={classes.img}src="https://cdn-images-1.medium.com/max/1200/1*uJJgPvoOHW7BmvcV2m7L6w@2x.png" alt="semantic scholar logo" /></a>
             </Grid>
             <Grid
             container
@@ -81,28 +77,9 @@ export default function PaperIdInputForm(props){
                             handleChangeId(searchId);
                             setSearchId('');
                         }}
-                    >Add</Button>
-            </div>
-            </Grid>
-            { papers.length !== 0 &&
-        
-                <div>
-                    <h4 className={classes.h4}> Added Papers</h4> 
-                    {papers.map(paper => (
-                        <li className={classes.li} key={paper.title}>{paper.title}</li>
-                    ))}
-                    {papers.length > 1 &&
-                        <Button variant="contained" color="primary" onClick={()=> setFindCitations(true)}>Find Common Citations</Button>
-                    } 
-                    {findCitations && <CrossLinkList papers={papers} />}
-                    {papers.length > 1 &&
-                        <Button variant="contained" color="warning" onClick={()=> setSharedCitations(true)}>Find Shared Citations</Button>
-                    } 
-                    {findSharedCitations && <SharedCitationList papers={papers}/>}
+                    >Add</Button> 
                 </div>
-
-           
-            } 
+            </Grid>
         </div>
     )
 }
